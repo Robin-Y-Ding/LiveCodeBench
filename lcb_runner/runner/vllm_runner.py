@@ -21,6 +21,7 @@ class VLLMRunner(BaseRunner):
             # dtype=args.dtype,
             enforce_eager=True,
             max_model_len=4096,
+            swap_space=16,
             disable_custom_all_reduce=True,
             enable_prefix_caching=args.enable_prefix_caching,
             trust_remote_code=args.trust_remote_code,

@@ -19,6 +19,7 @@ class LMStyle(Enum):
     CodeLLaMaInstruct = "CodeLLaMaInstruct"
     StarCoderInstruct = "StarCoderInstruct"
     CodeQwenInstruct = "CodeQwenInstruct"
+    SemCoder = "SemCoder"
 
     Phind = "Phind"
     WizardCoder = "WizardCoder"
@@ -47,6 +48,20 @@ class LanguageModel:
 
 
 LanguageModelList: list[LanguageModel] = [
+    LanguageModel(
+        "semcoder/semcoder",
+        "SemCoder",
+        LMStyle.SemCoder,
+        datetime(2023, 1, 1),
+        link="https://huggingface.co/semcoder/semcoder",
+    ),
+    LanguageModel(
+        "semcoder/semcoder_s",
+        "SemCoder-S",
+        LMStyle.SemCoder,
+        datetime(2023, 1, 1),
+        link="https://huggingface.co/semcoder/semcoder_s",
+    ),
     LanguageModel(
         "meta-llama/Meta-Llama-3-70B",
         "LLama3-70b-Base",
