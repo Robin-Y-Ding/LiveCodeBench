@@ -34,6 +34,15 @@ assert {input} == ??
 [THOUGHT]
 """
 
+def make_semcoder_output_prompt(s):
+    code, input = s
+    return f"""Simulate the Execution: You are given a Python function and an assertion containing a function input. Complete the assertion containing the execution output corresponding to the given input in [ANSWER] and [/ANSWER] tags.
+[PYTHON]
+{code}
+assert f({input}) == ??
+[/PYTHON]
+[SCRACHPAD]
+"""
 
 def make_direct_output_prompt(s):
     code, input = s
@@ -80,7 +89,16 @@ def format_prompt_execution_base(
     input = question.input
     system_message = "You are an expert at Python programming, code execution, test case generation, and fuzzing."
     if cot:
-        prompt = make_cot_output_prompt((code, input))
+        if LanguageModelStyle == LMStyle.SemCoder:
+            # annotate each line with a comment: # [Lx]
+            code = code.split("\n")
+            for i, line in enumerate(code, 1):
+                if line.strip() != "":
+                    code[i-1] = f"{line} # [L{i + 4}]"
+            code = "\n".join(code)
+            prompt = make_semcoder_output_prompt((code, input))
+        else:
+            prompt = make_cot_output_prompt((code, input))
     else:
         prompt = make_direct_output_prompt((code, input))
 
@@ -138,6 +156,8 @@ def format_prompt_execution_base(
         return prompt
     elif LanguageModelStyle == LMStyle.MagiCoder:
         return prompt
+    elif LanguageModelStyle == LMStyle.SemCoder:
+        return prompt
     elif LanguageModelStyle == LMStyle.WizardCoder:
         return prompt
     elif LanguageModelStyle == LMStyle.Phind:
@@ -156,6 +176,8 @@ def format_prompt_execution_base(
     elif LanguageModelStyle == LMStyle.DracarysLlama:
         return prompt
     elif LanguageModelStyle == LMStyle.DracarysQwen:
+        return prompt
+    elif LanguageModelStyle == LMStyle.GenericBase:
         return prompt
     else:
         raise NotImplementedError(

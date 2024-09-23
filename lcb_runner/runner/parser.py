@@ -63,6 +63,9 @@ def get_args():
         "--max_tokens", type=int, default=2000, help="Max tokens for sampling"
     )
     parser.add_argument(
+        "--max_model_len", type=int, default=4096, help="Max model length"
+    )
+    parser.add_argument(
         "--multiprocess",
         default=0,
         type=int,
