@@ -121,6 +121,8 @@ def get_args():
         help="Folder name to save the custom output results (output file folder modified if None)"
     )
     parser.add_argument("--dtype", type=str, default="bfloat16", help="Dtype for vllm")
+    parser.add_argument("--monologue", action="store_true", help="Monologue mode")
+    parser.add_argument("--output_dir", type=str, default="output", help="Output directory")
 
     args = parser.parse_args()
 

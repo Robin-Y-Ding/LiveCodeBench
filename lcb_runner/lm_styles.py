@@ -49,18 +49,18 @@ class LanguageModel:
 
 LanguageModelList: list[LanguageModel] = [
     LanguageModel(
-        "semcoder/semcoder",
+        "semcoder/semcoder_1030",
         "SemCoder",
         LMStyle.SemCoder,
         datetime(2023, 1, 1),
-        link="https://huggingface.co/semcoder/semcoder",
+        link="https://huggingface.co/semcoder/semcoder_1030",
     ),
     LanguageModel(
-        "semcoder/semcoder_s",
+        "semcoder/semcoder_s_1030",
         "SemCoder-S",
         LMStyle.SemCoder,
         datetime(2023, 1, 1),
-        link="https://huggingface.co/semcoder/semcoder_s",
+        link="https://huggingface.co/semcoder/semcoder_s_1030",
     ),
     LanguageModel(
         "meta-llama/Meta-Llama-3-70B",
@@ -215,6 +215,20 @@ LanguageModelList: list[LanguageModel] = [
         LMStyle.GenericBase,
         datetime(2023, 1, 1),
         link="https://huggingface.co/codellama/CodeLlama-7b-hf",
+    ),
+    LanguageModel(
+        "codellama/CodeLlama-13b-Python-hf",
+        "CodeLlama-13b-Python-Base",
+        LMStyle.GenericBase,
+        datetime(2023, 1, 1),
+        link="https://huggingface.co/codellama/CodeLlama-13b-Python-hf",
+    ),
+    LanguageModel(
+        "codellama/CodeLlama-7b-Python-hf",
+        "CodeLlama-7b-Python-Base",
+        LMStyle.GenericBase,
+        datetime(2023, 1, 1),
+        link="https://huggingface.co/codellama/CodeLlama-7b-Python-hf",
     ),
     LanguageModel(
         "codellama/CodeLlama-70b-Instruct-hf",
@@ -546,11 +560,11 @@ LanguageModelList: list[LanguageModel] = [
         link="https://huggingface.co/stabilityai/stable-code-3b/",
     ),
     LanguageModel(
-        "bigcode/starcoder2-instruct-15b-v0.1",
+        "bigcode/starcoder2-15b-instruct-v0.1",
         "StarCoder2-Ins-v0.1",
         LMStyle.LLaMa3,
         datetime(2023, 4, 30),
-        link="https://huggingface.co/bigcode/starcoder2-instruct-15b-v0.1",
+        link="https://huggingface.co/bigcode/bigcode/starcoder2-15b-instruct-v0.1",
     ),
     LanguageModel(
         "qwen/Qwen1.5-72B-Chat",
@@ -588,6 +602,13 @@ LanguageModelList: list[LanguageModel] = [
         link="https://huggingface.co/Phind/Phind-CodeLlama-34B-v2",
     ),
     LanguageModel(
+        "ise-uiuc/Magicoder-DS-6.7B",
+        "MagiCoder-DS-6.7B",
+        LMStyle.MagiCoder,
+        datetime(2023, 7, 30),
+        link="https://huggingface.co/ise-uiuc/Magicoder-DS-6.7B",
+    ),
+    LanguageModel(
         "ise-uiuc/Magicoder-S-DS-6.7B",
         "MagiCoderS-DS-6.7B",
         LMStyle.MagiCoder,
@@ -600,6 +621,13 @@ LanguageModelList: list[LanguageModel] = [
         LMStyle.MagiCoder,
         datetime(2023, 1, 1),
         link="https://huggingface.co/ise-uiuc/Magicoder-S-CL-7B",
+    ),
+    LanguageModel(
+        "ise-uiuc/Magicoder-CL-7B",
+        "MagiCoder-CL-7B",
+        LMStyle.MagiCoder,
+        datetime(2023, 1, 1),
+        link="https://huggingface.co/ise-uiuc/Magicoder-CL-7B",
     ),
     LanguageModel(
         "openbmb/Eurus-70b-sft",

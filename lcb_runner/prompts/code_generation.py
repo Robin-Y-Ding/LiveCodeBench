@@ -123,7 +123,7 @@ def get_magicoder_question_template_answer(question: CodeGenerationProblem):
     return prompt
 
 def get_semcoder_question_template_answer(question: CodeGenerationProblem):
-    prompt = "You will be given a question (problem specification) and will generate a correct Python program that matches the specification and passes all tests.\n\n"
+    prompt = f"You will be given a question (problem specification) and will generate a correct Python program that matches the specification and passes all tests. You will NOT return anything except for the program.\n\n"
     prompt += f"Question: {question.question_content}\n\n"
     if question.starter_code:
         prompt += f"{PromptConstants.FORMATTING_MESSAGE_WITH_STARTER_CODE}\n"
