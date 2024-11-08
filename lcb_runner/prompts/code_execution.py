@@ -35,13 +35,20 @@ assert {input} == ??
 """
 
 def make_semcoder_output_prompt(s):
+    special_token = "[MONOLOGUE]" # We just need a special token to trigger the monologue -- no few-shot examples needed
     code, input = s
+    # annotate each line with a line label for efficient monologue: # [Lx]
+    code = code.split("\n")
+    for i, line in enumerate(code, 1):
+        if line.strip() != "":
+            code[i-1] = f"{line} # [L{i + 4}]"
+    code = "\n".join(code)
     return f"""Simulate the Execution: You are given a Python function and an assertion containing a function input. Complete the assertion containing the execution output corresponding to the given input in [ANSWER] and [/ANSWER] tags.
 [PYTHON]
 {code}
 assert f({input}) == ??
 [/PYTHON]
-[MONOLOGUE]
+{special_token}
 """
 
 def make_direct_output_prompt(s):
@@ -90,12 +97,6 @@ def format_prompt_execution_base(
     system_message = "You are an expert at Python programming, code execution, test case generation, and fuzzing."
     if cot:
         if LanguageModelStyle == LMStyle.SemCoder:
-            # annotate each line with a comment: # [Lx]
-            code = code.split("\n")
-            for i, line in enumerate(code, 1):
-                if line.strip() != "":
-                    code[i-1] = f"{line} # [L{i + 4}]"
-            code = "\n".join(code)
             prompt = make_semcoder_output_prompt((code, input))
         else:
             prompt = make_cot_output_prompt((code, input))
