@@ -41,7 +41,7 @@ def make_semcoder_output_prompt(s):
 {code}
 assert f({input}) == ??
 [/PYTHON]
-[SCRACHPAD]
+[MONOLOGUE]
 """
 
 def make_direct_output_prompt(s):
@@ -74,11 +74,11 @@ assert {input} == ??
 """
 
 
-def format_prompt_execution(question, LanguageModelStyle):
+def format_prompt_execution(question, LanguageModelStyle, cot=False):
     return format_prompt_execution_base(question, LanguageModelStyle, False)
 
 
-def format_prompt_execution_cot(question, LanguageModelStyle):
+def format_prompt_execution_cot(question, LanguageModelStyle, cot=True):
     return format_prompt_execution_base(question, LanguageModelStyle, True)
 
 
